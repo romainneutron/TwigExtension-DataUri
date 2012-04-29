@@ -6,7 +6,7 @@ This extension makes it easy to use the dataURI scheme as specified in RFC 2397
 (see https://www.ietf.org/rfc/rfc2397.txt).
 
 Be carefull, as explained in the RFC, it can not use as a replacement for
-traditionnal sources. dataURI scheme is length limited and can not handle all
+traditionnal sources. DataURI scheme is length limited and can not handle all
 files / ressources.
 
 ##Install
@@ -52,10 +52,6 @@ extension is 100% RFC compliant and the extension will log warnings if you rende
 data too large, but you can unlock the limit with the first
 parameter of the filter:
 
-`note` : If you display errors, warning message will result in Twig throws
-Twig_Error_Runtime exception.
-
-
 ```php
 <?php
 $twig->addExtension(new \DataURI\TwigExtension());
@@ -63,9 +59,15 @@ $twig->render('<img title="hello" src="{{ image | dataUri(false) }}" />', array(
 
 ```
 
-dataUri can take up to 3 parameters :
+**note** : If you display errors, warning message will result in Twig throws
+Twig_Error_Runtime exception.
+
+DataUri can take up to 3 parameters :
 
 ``dataUri(strictMode, mimeType, parameters)``
+
+Exemple Mimetype
+++++++++++++++++
 
 ```php
 <?php
@@ -78,6 +80,9 @@ will render something like :
 ```
 data:image/png;base64,oAYTUKHJKPPZ...F873=/SO
 ```
+
+Exemple Parameters
+++++++++++++++++++
 
 ```php
 <?php
