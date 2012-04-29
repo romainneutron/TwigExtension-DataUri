@@ -24,7 +24,6 @@ this to your ``composer.json`` :
         "data-uri/twig-extension": "dev-master"
     }
 }
-
 ```
 
 Then, register the extension in your twig environment :
@@ -88,7 +87,6 @@ data too large, but you can unlock the limit with the first option of the filter
 <?php
 $twig->addExtension(new \DataURI\TwigExtension());
 $twig->render('<img title="hello" src="{{ image | dataUri(false) }}" />', array('image' => '/path/to/BIGPICTURE.jpg'));
-
 ```
 
 **note** : If you display errors, warning message will result in Twig throws
