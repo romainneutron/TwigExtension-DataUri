@@ -73,6 +73,11 @@ DataUri can take up to 3 parameters :
 
 ``dataUri(strictMode, mimeType, parameters)``
 
+**strictMode** default value us `true`
+**mimeType** default value is `null` (autodetected when passing a pathname)
+**parameters** is an array of key/value parameters
+
+
 ###Unlock data length restriction
 
 As said above, the RFC is quite strict on the output max length. By default, the
