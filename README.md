@@ -43,12 +43,17 @@ will render something like :
 <img title="hello" src="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAB...SUhEU==" />
 ```
 
-##Parameters :
+##Options :
+
+DataUri can take up to 3 parameters :
+
+``dataUri(strictMode, mimeType, parameters)``
+
+###Unlock data length restriction
 
 As said above, the RFC is quite strict on the output max length. By default, the
 extension is 100% RFC compliant and the extension will log warnings if you render
-data too large, but you can unlock the limit with the first
-parameter of the filter:
+data too large, but you can unlock the limit with the first option of the filter:
 
 ```php
 <?php
@@ -59,10 +64,6 @@ $twig->render('<img title="hello" src="{{ image | dataUri(false) }}" />', array(
 
 **note** : If you display errors, warning message will result in Twig throws
 Twig_Error_Runtime exception.
-
-DataUri can take up to 3 parameters :
-
-``dataUri(strictMode, mimeType, parameters)``
 
 ###Exemple Mimetype
 
