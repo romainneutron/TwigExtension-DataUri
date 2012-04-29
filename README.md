@@ -7,9 +7,9 @@ This is an extension for Twig Templating engine (http://twig.sensiolabs.org/)
 This extension makes easy to use the dataURI scheme as specified in RFC 2397
 (see https://www.ietf.org/rfc/rfc2397.txt).
 
-Be carefull, as explained in the RFC, it can not use as a replacement for
-traditionnal sources. DataURI scheme is length limited and can not handle all
-files / ressources.
+Be carefull, as explained in the RFC, it can not be used as a replacement for
+traditionnal URI sources all the time. DataURI scheme is length limited and can
+not handle all files / ressources.
 
 ##Install
 
