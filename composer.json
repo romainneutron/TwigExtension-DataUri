@@ -1,8 +1,8 @@
 {
     "name": "data-uri/twig-extension",
     "type": "library",
-    "description": "",
-    "keywords": [],
+    "description": "Twig extension for data URI ; Converts datas to the data URI Url scheme (RFC 2397)",
+    "keywords": ['dataURI', 'dataURL', 'twig extension'],
     "license": "MIT",
     "authors": [
     {
