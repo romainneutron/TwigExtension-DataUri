@@ -2,7 +2,9 @@
 
 [![Build Status](https://secure.travis-ci.org/romainneutron/TwigExtension-DataUri.png?branch=master)](http://travis-ci.org/romainneutron/TwigExtension-DataUri)
 
-This extension makes it easy to use the dataURI scheme as specified in RFC 2397
+This is an extension for Twig Templating engine (http://twig.sensiolabs.org/)
+
+This extension makes easy to use the dataURI scheme as specified in RFC 2397
 (see https://www.ietf.org/rfc/rfc2397.txt).
 
 Be carefull, as explained in the RFC, it can not use as a replacement for
@@ -25,22 +27,44 @@ this to your ``composer.json`` :
 
 ```
 
-##Usage
-
-In the following example, image can be either a stream ressource, a scalar value,
-a binary string, or a pathname for a file.
+Then, register the extension in your twig environment :
 
 ```php
 <?php
 $twig->addExtension(new \DataURI\TwigExtension());
-$twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image' => '/path/to/image.jpg'));
 ```
 
-will render something like :
+##Usage
 
+DataURI etensions works with, **stream ressource**, **scalar value**,
+a **binary string**, or a **pathname** for a file.
+
+###Pathname
+
+```php
+<?php
+$twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image' => '/path/to/image.jpg'));
+```
+will render something like :
 
 ```html
 <img title="hello" src="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAB...SUhEU==" />
+```
+
+###Ressource
+
+```php
+<?php
+$file = fopen('/path/to/image.jpg', 'r');
+$twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image' => $file));
+```
+
+###Binary string
+
+```php
+<?php
+$file = file_get_contenst('/path/to/image.jpg');
+$twig->render('<img title="hello" src="{{ image | dataUri(true, 'image/jpeg') }}" />', array('image' => $file));
 ```
 
 ##Options :
