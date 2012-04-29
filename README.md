@@ -17,10 +17,11 @@ Download composer following instructions at http://getcomposer.org/, then add
 this to your ``composer.json`` :
 
 ```json
-
+{
     "require": {
         "data-uri/twig-extension": "dev-master"
-    },
+    }
+}
 
 ```
 
@@ -30,6 +31,7 @@ In the following example, image can be either a stream ressource, a scalar value
 a binary string, or a pathname for a file.
 
 ```php
+<?php
 $twig->addExtension(new \DataURI\TwigExtension());
 $twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image' => '/path/to/image.jpg'));
 ```
@@ -55,7 +57,7 @@ Twig_Error_Runtime exception.
 
 
 ```php
-
+<?php
 $twig->addExtension(new \DataURI\TwigExtension());
 $twig->render('<img title="hello" src="{{ image | dataUri(false) }}" />', array('image' => '/path/to/BIGPICTURE.jpg'));
 
@@ -66,19 +68,27 @@ dataUri can take up to 3 parameters :
 ``dataUri(strictMode, mimeType, parameters)``
 
 ```php
-
+<?php
 $file = fopen('bunny.png', 'r');
 $twig->render("{{ file | dataUri(false, 'image/png') }}", array('file' => $file));
+```
 
-// renders data:image/png;base64,oAYTUKHJKPPZ...F873=/SO
+will render something like :
+
+```
+data:image/png;base64,oAYTUKHJKPPZ...F873=/SO
 ```
 
 ```php
-
+<?php
 $json = '{"Hello":"World !"}';
 $twig->render( '{{ json | dataUri(false, "application/json", {"charset":"utf-8"}) }}', array('json' => $json));
+```
 
-// renders data:application/json;charset=utf-8,%7B%22Hello%22%3A%22World%20%21%22%7D
+will render :
+
+```
+data:application/json;charset=utf-8,%7B%22Hello%22%3A%22World%20%21%22%7D
 ```
 
 ##License
