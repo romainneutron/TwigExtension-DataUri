@@ -43,9 +43,7 @@ will render something like :
 <img title="hello" src="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAB...SUhEU==" />
 ```
 
-
-Parameters :
-------------
+##Parameters :
 
 As said above, the RFC is quite strict on the output max length. By default, the
 extension is 100% RFC compliant and the extension will log warnings if you render
@@ -66,8 +64,7 @@ DataUri can take up to 3 parameters :
 
 ``dataUri(strictMode, mimeType, parameters)``
 
-Exemple Mimetype
-++++++++++++++++
+###Exemple Mimetype
 
 ```php
 <?php
@@ -81,8 +78,7 @@ will render something like :
 data:image/png;base64,oAYTUKHJKPPZ...F873=/SO
 ```
 
-Exemple Parameters
-++++++++++++++++++
+###Exemple Parameters
 
 ```php
 <?php
