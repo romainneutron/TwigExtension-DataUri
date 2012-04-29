@@ -63,7 +63,7 @@ $twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image'
 ```php
 <?php
 $file = file_get_contenst('/path/to/image.jpg');
-$twig->render('<img title="hello" src="{{ image | dataUri(true, 'image/jpeg') }}" />', array('image' => $file));
+$twig->render('<img title="hello" src="{{ image | dataUri(true, \'image/jpeg\') }}" />', array('image' => $file));
 ```
 
 ##Options :
