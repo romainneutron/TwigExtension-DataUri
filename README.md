@@ -91,7 +91,7 @@ $twig->render('<img title="hello" src="{{ image | dataUri(false) }}" />', array(
 **note** : If you display errors, warning message will result in Twig throws
 Twig_Error_Runtime exception.
 
-###Exemple Mimetype
+###Example Mimetype
 
 ```php
 <?php
@@ -105,7 +105,7 @@ will render something like :
 data:image/png;base64,oAYTUKHJKPPZ...F873=/SO
 ```
 
-###Exemple Parameters
+###Example Parameters
 
 ```php
 <?php
