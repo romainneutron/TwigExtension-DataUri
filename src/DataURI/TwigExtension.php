@@ -114,7 +114,7 @@ class TwigExtension extends \Twig_Extension
     {
 
         if (file_exists($source)) {
-            return Data::buildFromFile($source, true, $strict);
+            return Data::buildFromFile($source, $strict);
         }
 
         return new Data($source, $mime, $parameters, $strict);

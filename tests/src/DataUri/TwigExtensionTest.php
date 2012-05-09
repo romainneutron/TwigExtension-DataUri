@@ -94,8 +94,8 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
     public function testDataUriFileStrict()
     {
         $data = $this->twig->render('{{ file | dataUri(false) }}', array('file' => __DIR__ . '/../../photo01.JPG'));
-        $this->assertTrue(strlen($data) > 4000000);
-        $this->assertTrue(strpos($data, 'data:image/jpeg;base64,LzlqLzRTLytSWGhwWmdBQVRV') === 0);
+        $this->assertTrue(strlen($data) > 3000000);
+        $this->assertTrue(strpos($data, 'data:image/jpeg;base64,/9j/4S/+RXhpZgAATU0AKgAAAAgAC') === 0);
     }
 
     /**
