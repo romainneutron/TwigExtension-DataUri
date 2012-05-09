@@ -62,8 +62,8 @@ $twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image'
 
 ```php
 <?php
-$file = file_get_contenst('/path/to/image.jpg');
-$twig->render('<img title="hello" src="{{ image | dataUri(true, 'image/jpeg') }}" />', array('image' => $file));
+$file = file_get_contents('/path/to/image.jpg');
+$twig->render('<img title="hello" src="{{ image | dataUri(true, \'image/jpeg\') }}" />', array('image' => $file));
 ```
 
 ##Options :
@@ -85,14 +85,13 @@ data too large, but you can unlock the limit with the first option of the filter
 
 ```php
 <?php
-$twig->addExtension(new \DataURI\TwigExtension());
 $twig->render('<img title="hello" src="{{ image | dataUri(false) }}" />', array('image' => '/path/to/BIGPICTURE.jpg'));
 ```
 
 **note** : If you display errors, warning message will result in Twig throws
 Twig_Error_Runtime exception.
 
-###Exemple Mimetype
+###Example Mimetype
 
 ```php
 <?php
@@ -106,7 +105,7 @@ will render something like :
 data:image/png;base64,oAYTUKHJKPPZ...F873=/SO
 ```
 
-###Exemple Parameters
+###Example Parameters
 
 ```php
 <?php
