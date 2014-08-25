@@ -19,7 +19,9 @@ This extension requires PHP 5.3.2.
 ```json
 {
     "require": {
-        "data-uri/twig-extension": "dev-master"
+        "data-uri/twig-extension": "dev-master",
+        "data-uri/data-uri": "dev-master",
+        "twig/extensions": "dev-master"
     }
 }
 ```
