@@ -91,6 +91,16 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
      * @covers DataUri\TwigExtension::dataUri
      * @covers DataUri\TwigExtension::getDataFromScalar
      */
+    public function testDataUriUrl()
+    {
+        $url = 'http://www.alchemy.fr/images/header_03.png';
+        $this->twig->render('{{ url | dataUri(false) }}', array('url' => $url));
+    }
+
+    /**
+     * @covers DataUri\TwigExtension::dataUri
+     * @covers DataUri\TwigExtension::getDataFromScalar
+     */
     public function testDataUriFileStrict()
     {
         $data = $this->twig->render('{{ file | dataUri(false) }}', array('file' => __DIR__ . '/../../photo01.JPG'));
