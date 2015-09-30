@@ -112,6 +112,9 @@ class TwigExtension extends \Twig_Extension
      */
     protected function getDataFromScalar($source, $strict, $mime, $parameters)
     {
+        if (filter_var($source, FILTER_VALIDATE_URL) !== false) {
+            return Data::buildFromUrl($source, $strict);
+        }
 
         if (file_exists($source)) {
             return Data::buildFromFile($source, $strict);
