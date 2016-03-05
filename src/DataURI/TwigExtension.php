@@ -116,7 +116,7 @@ class TwigExtension extends \Twig_Extension
             return Data::buildFromUrl($source, $strict);
         }
 
-        if (file_exists($source)) {
+        if (@file_exists($source)) {
             return Data::buildFromFile($source, $strict);
         }
 
