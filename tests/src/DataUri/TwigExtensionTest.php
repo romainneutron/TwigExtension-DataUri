@@ -11,7 +11,7 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $loader = new \Twig_Loader_String();
+        $loader = new \Twig_Loader_Array(array());
         $this->extension = new TwigExtension();
         $this->twig = new \Twig_Environment($loader);
         $this->twig->addExtension($this->extension);
@@ -33,19 +33,19 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
         $filters = $this->extension->getFilters();
         $this->assertArrayHasKey('dataUri', $filters);
         $method = $filters['dataUri'];
-        $this->assertInstanceOf('\\Twig_Filter_Method', $method);
+        $this->assertInstanceOf('\\Twig_SimpleFilter', $method);
     }
 
     /**
      * @covers DataUri\TwigExtension::dataUri
-     * @covers DataUri\TwigExtension::getDataFromRessource
+     * @covers DataUri\TwigExtension::getDataFromResource
      */
-    public function testDataUriRessource()
+    public function testDataUriResource()
     {
         $file = __DIR__ . '/../../smile.png';
-        $ressource = fopen($file, 'r');
+        $resource = fopen($file, 'r');
 
-        $data = $this->twig->render('{{ file | dataUri(false, "image/jpeg") }}', array('file' => $ressource));
+        $data = $this->twig->render('{{ file | dataUri(false, "image/jpeg") }}', array('file' => $resource));
         $this->assertEquals('data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAB'
             . 'AAAAAQCAMAAAAoLQ9TAAAAyVBMVEUzM2a9pUL90Bzi0phoZH3/6pb/9cytooiEg'
             . '3v93FhST2vuwhL977qVjGr/++z/1zl0cILPvoj/5X9eW3Xix1/9ywP/7aX/+NyL'
