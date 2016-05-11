@@ -9,9 +9,14 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
      */
     protected $twig;
 
+    /**
+     * @var TwigExtension
+     */
+    protected $extension;
+
     protected function setUp()
     {
-        $loader = new \Twig_Loader_String();
+        $loader = new \Twig_Loader_Array(array());
         $this->extension = new TwigExtension();
         $this->twig = new \Twig_Environment($loader);
         $this->twig->addExtension($this->extension);
@@ -31,21 +36,22 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetFilters()
     {
         $filters = $this->extension->getFilters();
-        $this->assertArrayHasKey('dataUri', $filters);
-        $method = $filters['dataUri'];
-        $this->assertInstanceOf('\\Twig_Filter_Method', $method);
+        $this->assertArrayHasKey(0, $filters);
+        $simpleFilter = $filters[0];
+        $this->assertInstanceOf('\\Twig_SimpleFilter', $simpleFilter);
     }
 
     /**
      * @covers DataUri\TwigExtension::dataUri
-     * @covers DataUri\TwigExtension::getDataFromRessource
+     * @covers DataUri\TwigExtension::getDataFromResource
      */
-    public function testDataUriRessource()
+    public function testDataUriResource()
     {
         $file = __DIR__ . '/../../smile.png';
-        $ressource = fopen($file, 'r');
+        $resource = fopen($file, 'r');
 
-        $data = $this->twig->render('{{ file | dataUri(false, "image/jpeg") }}', array('file' => $ressource));
+        $template = $this->twig->createTemplate('{{ file | dataUri(false, "image/jpeg") }}');
+        $data = $template->render(array('file' => $resource));
         $this->assertEquals('data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAB'
             . 'AAAAAQCAMAAAAoLQ9TAAAAyVBMVEUzM2a9pUL90Bzi0phoZH3/6pb/9cytooiEg'
             . '3v93FhST2vuwhL977qVjGr/++z/1zl0cILPvoj/5X9eW3Xix1/9ywP/7aX/+NyL'
@@ -67,10 +73,12 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testDataUriScalar()
     {
-        $data = $this->twig->render('{{ scalarValue | dataUri }}', array('scalarValue' => 'Hello world !'));
+        $template = $this->twig->createTemplate('{{ scalarValue | dataUri }}');
+        $data = $template->render(array('scalarValue' => 'Hello world !'));
         $this->assertEquals('data:text/plain;charset=US-ASCII,Hello%20world%20%21', $data);
 
-        $data = $this->twig->render('{{ scalarValue | dataUri(true, "text/csv", {"charset":"utf-8"}) }}', array('scalarValue' => 'Bonne année !'));
+        $template = $this->twig->createTemplate('{{ scalarValue | dataUri(true, "text/csv", {"charset":"utf-8"}) }}');
+        $data = $template->render(array('scalarValue' => 'Bonne année !'));
         $this->assertEquals('data:text/csv;charset=utf-8,Bonne%20ann%C3%A9e%20%21', $data);
     }
 
@@ -81,10 +89,12 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
     public function testDataUriFile()
     {
         $filepath = __DIR__ . '/../../photo01.JPG';
-        $this->twig->render('{{ filepath | dataUri(false) }}', array('filepath' => $filepath));
+        $template = $this->twig->createTemplate('{{ filepath | dataUri(false) }}');
+        $template->render(array('filepath' => $filepath));
 
         $filepath = __DIR__ . '/../../smile.png';
-        $this->twig->render('{{ filepath | dataUri }}', array('filepath' => $filepath));
+        $template = $this->twig->createTemplate('{{ filepath | dataUri }}');
+        $template->render(array('filepath' => $filepath));
     }
 
     /**
@@ -94,7 +104,8 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
     public function testDataUriUrl()
     {
         $url = 'http://www.alchemy.fr/images/header_03.png';
-        $this->twig->render('{{ url | dataUri(false) }}', array('url' => $url));
+        $template = $this->twig->createTemplate('{{ url | dataUri(false) }}');
+        $template->render(array('url' => $url));
     }
 
 
@@ -105,7 +116,8 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
     public function testDataUriBinary()
     {
         $data = file_get_contents( __DIR__ . '/../../photo01.JPG');
-        $this->twig->render('{{ data | dataUri(false) }}', array('data' => $data));
+        $template = $this->twig->createTemplate('{{ data | dataUri(false) }}');
+        $template->render(array('data' => $data));
     }
 
     /**
@@ -114,7 +126,8 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testDataUriFileStrict()
     {
-        $data = $this->twig->render('{{ file | dataUri(false) }}', array('file' => __DIR__ . '/../../photo01.JPG'));
+        $template = $this->twig->createTemplate('{{ file | dataUri(false) }}');
+        $data = $template->render(array('file' => __DIR__ . '/../../photo01.JPG'));
         $this->assertTrue(strlen($data) > 3000000);
         $this->assertTrue(strpos($data, 'data:image/jpeg;base64,/9j/4S/+RXhpZgAATU0AKgAAAAgAC') === 0);
     }
@@ -125,6 +138,7 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testDataUriUnknownFormat()
     {
-        $this->twig->render('{{ array | dataUri(false) }}', array('array' => array()));
+        $template = $this->twig->createTemplate('{{ array | dataUri(false) }}');
+        $template->render(array('array' => array()));
     }
 }
