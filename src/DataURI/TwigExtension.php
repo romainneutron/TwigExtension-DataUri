@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This tig extension is released under MIT license
+ * This Twig extension is released under MIT license
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
