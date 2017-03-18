@@ -16,6 +16,9 @@
         "twig/extensions": "~1.0",
         "data-uri/data-uri": "~0.2.0"
     },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^3.2"
+    },
     "autoload": {
         "psr-0": {
             "DataURI": "src"
