@@ -1,4 +1,4 @@
-#DataURI Twig Extension
+# DataURI Twig Extension
 
 [![Build Status](https://secure.travis-ci.org/romainneutron/TwigExtension-DataUri.png?branch=master)](http://travis-ci.org/romainneutron/TwigExtension-DataUri)
 
@@ -30,11 +30,11 @@ Then, register the extension in your twig environment:
 $twig->addExtension(new \DataURI\TwigExtension());
 ```
 
-##Usage
+## Usage
 
 DataURI extension works with **stream ressource**, **scalar value**, **binary string**, or a **pathname** for a file.
 
-###Pathname
+### Pathname
 
 ```php
 $twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image' => '/path/to/image.jpg'));
@@ -46,21 +46,21 @@ will render something like:
 <img title="hello" src="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAB...SUhEU==" />
 ```
 
-###Ressource
+### Ressource
 
 ```php
 $file = fopen('/path/to/image.jpg', 'r');
 $twig->render('<img title="hello" src="{{ image | dataUri }}" />', array('image' => $file));
 ```
 
-###Binary string
+### Binary string
 
 ```php
 $file = file_get_contents('/path/to/image.jpg');
 $twig->render('<img title="hello" src="{{ image | dataUri(true, \'image/jpeg\') }}" />', array('image' => $file));
 ```
 
-##Options
+## Options
 
 DataUri can take up to 3 parameters:
 
@@ -84,7 +84,7 @@ $twig->render('<img title="hello" src="{{ image | dataUri(false) }}" />', array(
 **note**: If you display errors, warning message will result in Twig throws
 Twig_Error_Runtime exception.
 
-###Example Mimetype
+### Example Mimetype
 
 ```php
 $file = fopen('bunny.png', 'r');
@@ -97,7 +97,7 @@ will render something like:
 data:image/png;base64,oAYTUKHJKPPZ...F873=/SO
 ```
 
-###Example Parameters
+### Example Parameters
 
 ```php
 $json = '{"Hello":"World !"}';
@@ -110,7 +110,7 @@ will render:
 data:application/json;charset=utf-8,%7B%22Hello%22%3A%22World%20%21%22%7D
 ```
 
-##License
+## License
 
 This extension is released under the MIT License
 
