@@ -103,7 +103,7 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
      */
     public function testDataUriUrl()
     {
-        $url = 'http://www.alchemy.fr/images/header_03.png';
+        $url = 'http://twig.sensiolabs.org/images/logo.png';
         $template = $this->twig->createTemplate('{{ url | dataUri(false) }}');
         $template->render(array('url' => $url));
     }
