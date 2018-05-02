@@ -62,6 +62,9 @@ class TwigExtension extends \Twig_Extension
                     $data = $this->getDataFromScalar($source, $strict, $mime, $parameters);
 
                     break;
+                case ($source instanceof \Twig_Markup):
+                    $data = $this->getDataFromScalar((string)$source, $strict, $mime, $parameters);
+                    break;
                 default:
                     trigger_error("Tried to convert an unsupported source format", E_USER_WARNING);
                     break;
