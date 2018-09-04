@@ -10,7 +10,7 @@ Be carefull, as explained in the RFC, it can not be used as a replacement for
 traditionnal URI sources all the time. DataURI scheme is length limited and can
 not handle all files / ressources.
 
-##Install
+## Install
 
 This extension requires PHP 5.3.2.
 
@@ -71,7 +71,7 @@ DataUri can take up to 3 parameters:
 **parameters** is an array of key/value parameters
 
 
-###Unlock data length restriction
+### Unlock data length restriction
 
 As said above, the RFC is quite strict on the output max length. By default, the
 extension is 100% RFC compliant and the extension will log warnings if you render
